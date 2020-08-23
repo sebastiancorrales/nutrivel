@@ -5,83 +5,92 @@
         <h4 class="text-light font-weight-bold mb-0">NUTRIR</h4>
       </div>
       <div class="menu">
-       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-              <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="nav-icon fas fa-home"></i>
-                  <p>
-                    Inicio
-                    <i class="right"></i>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="nav-icon fas fa-user-alt"></i>
-                  <p>
-                    Beneficiario
-                    <i class="right"></i>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-th-large"></i>
-                  <p>
-                    Programas
-                    <i class="right"></i>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-flag"></i>
-                  <p>
-                    Informes
-                    <i class="right"></i>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-newspaper"></i>
+        <ul
+          class="nav nav-pills nav-sidebar flex-column"
+          data-widget="treeview"
+          role="menu"
+          data-accordion="false"
+        >
+          <li class="nav-item">
+            <router-link :to="{name:'home'}">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Inicio
+                <i class="right"></i>
+              </p>
+            </router-link>
+          </li>
+          <router-link :to="{name:'beneficiarios'}">
+            <i class="nav-icon fas fa-home"></i>
+            <p>
+              Beneficiarios
+              <i class="right"></i>
+            </p>
+          </router-link>
 
-                  <p>
-                    Novedades
-                    <i class="right"></i>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-address-card"></i>
-                  <p>
-                    Caracterización
-                    <i class="right"></i>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="dropdown dropright nav-link btn-panel-admin dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="nav-icon fas fa-columns "></i>
-                  <p>
-                    Panel administrativo
-                  </p>
-                  <div class="dropdown-menu dropdown-background" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Unidades de servicio</a>
-                    <a class="dropdown-item" href="#">Programas</a>
-                    <a class="dropdown-item" href="#">Convenios</a>
-                    <a class="dropdown-item" href="#">Tipo de población</a>
-                    <a class="dropdown-item" href="#">Pertenencia etnica</a>
-                    <a class="dropdown-item" href="#">Grupo Etario</a>
-                    <a class="dropdown-item" href="#">Regimen de seguiridad social</a>
-                    <a class="dropdown-item" href="#">Diversidad funcional</a>
-                    <a class="dropdown-item" href="#">Vacunas</a>
-                  </div>
-                </a>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th-large"></i>
+              <p>
+                Programas
+                <i class="right"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-flag"></i>
+              <p>
+                Informes
+                <i class="right"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-newspaper"></i>
 
-              </li>
-            </ul>
+              <p>
+                Novedades
+                <i class="right"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-address-card"></i>
+              <p>
+                Caracterización
+                <i class="right"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              href="#"
+              class="dropdown dropright nav-link btn-panel-admin dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="nav-icon fas fa-columns"></i>
+              <p>Panel administrativo</p>
+              <div class="dropdown-menu dropdown-background" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Unidades de servicio</a>
+                <a class="dropdown-item" href="#">Programas</a>
+                <a class="dropdown-item" href="#">Convenios</a>
+                <a class="dropdown-item" href="#">Tipo de población</a>
+                <a class="dropdown-item" href="#">Pertenencia etnica</a>
+                <a class="dropdown-item" href="#">Grupo Etario</a>
+                <a class="dropdown-item" href="#">Regimen de seguiridad social</a>
+                <a class="dropdown-item" href="#">Diversidad funcional</a>
+                <a class="dropdown-item" href="#">Vacunas</a>
+              </div>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
     <div class="w-100">
@@ -133,6 +142,14 @@
           </div>
         </div>
       </nav>
+
+      <div class="container">
+        <!-- Vistas  -->
+        <transition name="slide-fade" mode="out-in">
+          <router-view :key="$route.fullPath"></router-view>
+        </transition>
+        <!-- Vistas  -->
+      </div>
     </div>
   </div>
 </template>
