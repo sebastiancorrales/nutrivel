@@ -81,7 +81,10 @@
                 <a class="dropdown-item" href="#">Unidades de servicio</a>
                 <a class="dropdown-item" href="#">Programas</a>
                 <a class="dropdown-item" href="#">Convenios</a>
-                <a class="dropdown-item" href="#">Tipo de población</a>
+
+                <router-link :to="{name:'TypePopulation'}">
+                  <p class="dropdown-item" href="#">Tipo de población</p>
+                </router-link>
                 <a class="dropdown-item" href="#">Pertenencia etnica</a>
                 <a class="dropdown-item" href="#">Grupo Etario</a>
                 <a class="dropdown-item" href="#">Regimen de seguiridad social</a>

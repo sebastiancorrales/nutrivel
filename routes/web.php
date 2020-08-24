@@ -13,16 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/app', function () {
+Route::get('/', function () {
     return view('index');
 });
 
-Route::resource('/vaccinations', 'VaccinationController');
-Route::resource('/funcional-diversities', 'FuncionalDiversityController');
-Route::resource('/social-security-schemes', 'SocialSecuritySchemeController');
-Route::resource('/programs', 'ProgramController');
-Route::resource('/age-groups', 'AgeGroupController');
-Route::resource('/ethnicities', 'EthnicityController');
-Route::resource('/type-populations', 'TypePopulationController');
-Route::resource('/covenants', 'CovenantController');
-Route::resource('/service-units', 'ServiceUnitController');
+
