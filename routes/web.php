@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +18,13 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/{path?}', [
+    'uses'  => 'AppController@app',
+    'as'    => 'vue',
+    'where' => ['path' => '.*']
+]);
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

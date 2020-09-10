@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TypePopulationRequest;
 use App\TypePopulation;
+use Exception;
 use Illuminate\Http\Request;
 
 class TypePopulationController extends Controller
@@ -33,9 +35,20 @@ class TypePopulationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TypePopulationRequest $request)
     {
-        //
+
+        $typePopulation          = new TypePopulation();
+        $typePopulation->name    = $request->get('name');
+        $typePopulation->save();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -46,7 +59,10 @@ class TypePopulationController extends Controller
      */
     public function show(TypePopulation $typePopulation)
     {
-        //
+        // $typePopulations = TypePopulation::find($typePopulation);
+        // echo "hola";
+        return response()->json($typePopulation);
+        
     }
 
     /**
@@ -57,7 +73,10 @@ class TypePopulationController extends Controller
      */
     public function edit(TypePopulation $typePopulation)
     {
-        //
+        // $typePopulations = TypePopulation::find($typePopulation);
+
+        return response()->json($typePopulation);
+        
     }
 
     /**
@@ -67,9 +86,18 @@ class TypePopulationController extends Controller
      * @param  \App\TypePopulation  $typePopulation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TypePopulation $typePopulation)
+    public function update(TypePopulationRequest $request, TypePopulation $typePopulation)
     {
-        //
+        $typePopulation->name    = $request->get('name');
+        $typePopulation->update();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your update processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -80,6 +108,18 @@ class TypePopulationController extends Controller
      */
     public function destroy(TypePopulation $typePopulation)
     {
-        //
+        try
+        {   
+            $typePopulation = TypePopulation::find($typePopulation);
+            if($typePopulation->delete()){
+                return 'Eliminado';
+            }
+        }
+        catch(Exception $e) {
+            //Log::error($e->getMessage());
+            if($e->getCode()==23000) {
+                return 'Error 23000';
+            }
+        }
     }
 }

@@ -10942,6 +10942,20 @@ a:hover {
   border: 0;
 }
 
+.slide-fade-enter-active {
+  transition: all 0.1s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
 .btn-primary:hover {
   background-color: var(--primary);
 }
@@ -10976,6 +10990,12 @@ a:hover {
   border-right: 1px solid var(--grey);
 }
 
+a.router-link-exact-active {
+  background-color: rgba(12, 63, 204, 0.377);
+  color: white;
+  border-radius: 25px;
+}
+
 @media (max-width: 768px) {
   #sidebar-container {
     display: none;
@@ -10984,5 +11004,81 @@ a:hover {
   .stat {
     border: 0;
   }
+}
+
+.options-dashboard {
+  position: fixed;
+}
+
+.aside-dashboard {
+  background-color: #2C364C;
+}
+
+button.btn-create {
+  background-color: #163A70;
+  color: white;
+}
+
+a.btn-create {
+  background-color: #163A70;
+  color: white;
+}
+
+.btn-options {
+  background-color: #163A70;
+  color: white;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 4px;
+  margin-left: -7px;
+}
+
+.dropdown-background {
+  background-color: #2C364C;
+}
+
+.title-module {
+  color: #2c364c !important;
+}
+
+.module-items-row {
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.module-item {
+  background: linear-gradient(45deg, #0799EF, #0073B7);
+  border-radius: 6px;
+  color: #ffff;
+  width: 300px;
+}
+
+.module-title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: lighter;
+  font-style: normal;
+}
+
+.module-description {
+  margin-right: 20px;
+  margin-left: 20px;
+  text-align: start;
+}
+
+.module-bg-triangle {
+  width: 295px !important;
+}
+
+a.btn-panel-admin {
+  border: none;
+}
+
+.login {
+  margin-top: 50px;
+  left: 280%;
 }
 

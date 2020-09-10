@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\SocialPrograms;
+use App\SocialSecurity;
 use Illuminate\Http\Request;
 
-class SocialProgramsController extends Controller
+class SocialSecurityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class SocialProgramsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\SocialPrograms  $socialPrograms
+     * @param  \App\SocialSecurity  $socialSecurity
      * @return \Illuminate\Http\Response
      */
-    public function show(SocialPrograms $socialPrograms)
+    public function show(SocialSecurity $socialSecurity)
     {
         //
     }
@@ -52,10 +52,10 @@ class SocialProgramsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\SocialPrograms  $socialPrograms
+     * @param  \App\SocialSecurity  $socialSecurity
      * @return \Illuminate\Http\Response
      */
-    public function edit(SocialPrograms $socialPrograms)
+    public function edit(SocialSecurity $socialSecurity)
     {
         //
     }
@@ -64,10 +64,10 @@ class SocialProgramsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SocialPrograms  $socialPrograms
+     * @param  \App\SocialSecurity  $socialSecurity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SocialPrograms $socialPrograms)
+    public function update(Request $request, SocialSecurity $socialSecurity)
     {
         //
     }
@@ -75,10 +75,10 @@ class SocialProgramsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\SocialPrograms  $socialPrograms
+     * @param  \App\SocialSecurity  $socialSecurity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SocialPrograms $socialPrograms)
+    public function destroy(SocialSecurity $socialSecurity)
     {
         //
     }

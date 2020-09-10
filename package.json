@@ -23,5 +23,9 @@
         "vue": "^2.5.17",
         "vue-router": "^3.4.3",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "@saeris/vue-spinners": "^1.0.8",
+        "datatables": "^1.10.18"
     }
 }

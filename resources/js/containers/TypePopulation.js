@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const get = async () => {
     try {
         let res = await fetch('/api/type-populations', {
@@ -12,6 +14,7 @@ const get = async () => {
         console.log(error);
     }
 }
+
 const find = async (id, request) => {
     try {
         let uri = '';
@@ -45,7 +48,6 @@ const store = async (form) => {
                 'X-CSRF-TOKEN': token
             }
         });
-
         let data = await res.json();
         return { 'errors': data.errors, 'status': res.status };
     } catch (error) {

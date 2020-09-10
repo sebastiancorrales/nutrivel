@@ -17,6 +17,8 @@ class CreateServiceUnitsTable extends Migration
             $table->id();
             $table->text('name');
             $table->text('address');
+            $table->bigInteger('covenant_id')->unsigned()->nullable();
+            $table->foreign('covenant_id')->references('id')->on('covenants');
             $table->timestamps();
         });
     }
