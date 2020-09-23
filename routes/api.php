@@ -28,4 +28,7 @@ Route::resource('/type-populations', 'TypePopulationController');
 Route::resource('/covenants', 'CovenantController');
 Route::resource('/service-units', 'ServiceUnitController');
 
+Route::resource('/beneficiaries', 'BeneficiaryController');
+Route::resource('/family-structure', 'FamilyStructureController');
+
 

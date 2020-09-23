@@ -1,8 +1,21 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+// Componentes
 import DashBoard from "./views/DashBoard"
-import IndexBeneficiarios from "./views/Beneficiarios/Index"
+
+import IndexBeneficiaries from "./views/Beneficiaries/Index"
+import CreateBeneficiary from "./views/Beneficiaries/Create"
+import EditBeneficiary from "./views/Beneficiaries/Edit"
+import DetailBeneficiary from "./views/Beneficiaries/Detail"
+import InstitutionalInformationDetail from "./views/Beneficiaries/Detail/InstitutionalInformationDetail"
+import FamilyStructureDetail from "./views/Beneficiaries/Detail/FamilyStructureDetail"
+import SocialProgramsDetail from "./views/Beneficiaries/Detail/SocialProgramsDetail"
+import EducationDetail from "./views/Beneficiaries/Detail/EducationDetail"
+import SocialSecurityDetail from "./views/Beneficiaries/Detail/SocialSecurityDetail"
+import MainEconomicSupplier from "./views/Beneficiaries/Detail/MainEconomicSupplier"
+import FoodSecurityDetail from "./views/Beneficiaries/Detail/FoodSecurityDetail"
+import LocationConditionHousing from "./views/Beneficiaries/Detail/LocationConditionHousing"
 
 import IndexTypePopulation from "./views/TypePopulation/Index";
 import CreateTypePopulation from "./views/TypePopulation/Create";
@@ -13,7 +26,7 @@ import VueRouter from 'vue-router';
 Vue.use(Router);
 
 export default new VueRouter({
-    base:"/app/",
+    base: "/app/",
     mode: 'history',
     routes: [
         {
@@ -21,11 +34,66 @@ export default new VueRouter({
             name: 'home',
             component: DashBoard
         },
+
+        //* Beneficiaries Routes *//
+        
         {
-            path: '/beneficiarios/list',
-            name: 'beneficiarios',
-            component: IndexBeneficiarios
+            path: '/beneficiaries/list',
+            name: 'beneficiaries',
+            component: IndexBeneficiaries
         },
+        {
+            path: '/beneficiaries/create',
+            name: 'CreateBeneficiary',
+            component: CreateBeneficiary
+        },
+        {
+            path: '/beneficiaries/detail/:id',
+            name: 'DetailBeneficiary',
+            component: DetailBeneficiary
+        },
+        {
+            path: '/beneficiaries/detail/institutional-information-detail/:id',
+            name: 'InstitutionalInformationDetail',
+            component: InstitutionalInformationDetail
+        },
+        {
+            path: '/beneficiaries/detail/family-structure-detail/:id',
+            name: 'FamilyStructureDetail',
+            component: FamilyStructureDetail
+        },
+        {
+            path: '/beneficiaries/detail/social-programs-detail/:id',
+            name: 'SocialProgramsDetail',
+            component: SocialProgramsDetail
+        },
+        {
+            path: '/beneficiaries/detail/education-detail/:id',
+            name: 'EducationDetail',
+            component: EducationDetail
+        },
+        {
+            path: '/beneficiaries/detail/social-security-detail/:id',
+            name: 'SocialSecurityDetail',
+            component: SocialSecurityDetail
+        },
+        {
+            path: '/beneficiaries/detail/main-economic-supplier-detail/:id',
+            name: 'MainEconomicSupplier',
+            component: MainEconomicSupplier
+        },
+        {
+            path: '/beneficiaries/detail/food-security-detail/:id',
+            name: 'FoodSecurityDetail',
+            component: FoodSecurityDetail
+        },
+        {
+            path: '/beneficiaries/detail/location-condition-housing-detail/:id',
+            name: 'LocationConditionHousing',
+            component: LocationConditionHousing
+        },
+
+        //* TypePopulation Routes *//
 
         {
             path: '/type-population/list',

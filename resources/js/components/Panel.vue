@@ -15,7 +15,7 @@
           </p>
         </router-link>
       </li>
-      <router-link :to="{name:'beneficiarios'}">
+      <router-link :to="{name:'beneficiaries'}">
         <i class="nav-icon fas fa-home"></i>
         <p>
           Beneficiarios

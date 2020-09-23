@@ -24,8 +24,8 @@ class CreateFoodSecuritiesTable extends Migration
             $table->string('vegetables');
             $table->string('dairy');
             $table->string('eggs');
-            $table->bigInteger('benficiary_id')->unsigned()->nullable();
-            $table->foreign('benficiary_id')->references('id')->on('beneficiaries');
+            $table->bigInteger('beneficiary_id')->unsigned()->nullable();
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
             $table->timestamps();
         });
     }

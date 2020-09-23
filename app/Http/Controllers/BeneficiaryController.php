@@ -14,7 +14,18 @@ class BeneficiaryController extends Controller
      */
     public function index()
     {
-        //
+        return Beneficiary::with(
+            'pupulationType',
+            'ageGroup',
+            'ethnicity',
+            'familyStructure',
+            'socialProgram',
+            'education',
+            'socialSecurity',
+            'mainEconomicSupplier',
+            'foodSecurity',
+            'locationConditionHousing'
+        )->get();
     }
 
     /**
@@ -35,7 +46,17 @@ class BeneficiaryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $beneficiary          = new Beneficiary();
+        // $beneficiary->name    = $request->get('first_name');
+        // $beneficiary->save();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -46,7 +67,18 @@ class BeneficiaryController extends Controller
      */
     public function show(Beneficiary $beneficiary)
     {
-        //
+        return $beneficiary::with(
+            'pupulationType',
+            'ageGroup',
+            'ethnicity',
+            'familyStructure',
+            'socialProgram',
+            'education',
+            'socialSecurity',
+            'mainEconomicSupplier',
+            'foodSecurity',
+            'locationConditionHousing'
+        )->find($beneficiary->id);
     }
 
     /**

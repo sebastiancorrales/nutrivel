@@ -14,7 +14,7 @@ class FamilyStructureController extends Controller
      */
     public function index()
     {
-        //
+        return FamilyStructure::join('beneficiaries', 'beneficiaries.id', '=', 'family_structures.beneficiary_id')->get();
     }
 
     /**

@@ -24,7 +24,7 @@ export default {
       const id = this.$route.params.id;
       api.find(id).then((data) => {
         this.typePopulation = data;
-        // console.log(data);
+        console.log(data);
       });
     },
   },

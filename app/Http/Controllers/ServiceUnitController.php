@@ -14,7 +14,7 @@ class ServiceUnitController extends Controller
      */
     public function index()
     {
-        return ServiceUnit::all();
+        return ServiceUnit::with('covenant')->get();
     }
 
     /**

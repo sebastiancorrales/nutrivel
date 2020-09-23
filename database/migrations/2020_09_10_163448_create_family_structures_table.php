@@ -17,9 +17,9 @@ class CreateFamilyStructuresTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('kinship_family');
-            $table->date('bithday');
-            $table->bigInteger('benficiary_id')->unsigned()->nullable();
-            $table->foreign('benficiary_id')->references('id')->on('beneficiaries');
+            $table->date('birthday');
+            $table->bigInteger('beneficiary_id')->unsigned()->nullable();
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
             $table->timestamps();
         });
     }

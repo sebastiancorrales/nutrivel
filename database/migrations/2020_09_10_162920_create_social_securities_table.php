@@ -21,11 +21,11 @@ class CreateSocialSecuritiesTable extends Migration
             $table->string('score_sisben');
             $table->bigInteger('social_security_scheme_id')->unsigned()->nullable();
             $table->bigInteger('funcional_diversity_id')->unsigned()->nullable();
-            $table->bigInteger('benficiary_id')->unsigned()->nullable();
+            $table->bigInteger('beneficiary_id')->unsigned()->nullable();
             
             $table->foreign('social_security_scheme_id')->references('id')->on('social_security_schemes');
             $table->foreign('funcional_diversity_id')->references('id')->on('funcional_diversities');
-            $table->foreign('benficiary_id')->references('id')->on('beneficiaries');
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
             $table->timestamps();
         });
     }

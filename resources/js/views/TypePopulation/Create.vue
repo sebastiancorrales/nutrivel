@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h1>Crear tipo de población</h1>
+
     <form action method="post" @submit="create">
       <div class="form-row">
         <div class="col-6">
@@ -19,6 +20,7 @@
         </div>
       </div>
     </form>
+
     <!-- Toast de notificación -->
     <notification-toast></notification-toast>
   </div>
@@ -35,12 +37,14 @@ export default {
     return {
       form: {
         name: "",
+        address:""
       },
     };
   },
   methods: {
     create(e) {
       e.preventDefault();
+      
       api.store(e.target).then((data) => {
         if (data.status === 200) {
           console.log("creado");

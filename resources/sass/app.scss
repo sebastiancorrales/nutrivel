@@ -9,45 +9,58 @@
 
 :root {
     --primary: #111B54;
-    --light: #ffffff;
-    --grey: #efefef;
+    --light  : #ffffff;
+    --grey   : #efefef;
 }
 
 body {
-    overflow: hidden;
+    overflow   : hidden;
     font-family: 'Muli', sans-serif;
     font-weight: 300;
-    color: var(--primary);
+    color      : var(--primary);
 }
 
 a:hover {
     text-decoration: none;
 }
 
-.bg-primary { background-color: var(--primary) !important; }
+.bg-primary {
+    background-color: var(--primary) !important;
+}
 
-.bg-light { background-color: var(--light) !important; }
+.bg-light {
+    background-color: var(--light) !important;
+}
 
-.bg-grey { background-color: var(--grey) !important; }
+.bg-grey {
+    background-color: var(--grey) !important;
+}
 
-.bg-mix { background: linear-gradient(180deg, var(--light) 50%, var(--grey) 0); }
+.bg-mix {
+    background: linear-gradient(180deg, var(--light) 50%, var(--grey) 0);
+}
 
 .btn-primary {
     background-color: var(--primary);
-    border: 0;
+    border          : 0;
 }
 
 .slide-fade-enter-active {
     transition: all .1s ease;
-  }
-  .slide-fade-leave-active {
+}
+
+.slide-fade-leave-active {
     transition: all .1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-  .slide-fade-enter, .slide-fade-leave-to
-  /* .slide-fade-leave-active below version 2.1.8 */ {
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to
+
+/* .slide-fade-leave-active below version 2.1.8 */
+    {
     transform: translateX(10px);
-    opacity: 0;
-  }
+    opacity  : 0;
+}
 
 .btn-primary:hover {
     background-color: var(--primary);
@@ -56,18 +69,18 @@ a:hover {
 #sidebar-container {
     min-height: 100vh;
 }
-  
-#sidebar-container .logo{
+
+#sidebar-container .logo {
     padding: 0.875rem 1.25rem;
 }
-  
+
 #sidebar-container .menu {
     width: 18rem;
 }
 
 #content {
-    overflow-y: auto;
-    height: 100vh;
+    overflow-y    : auto;
+    height        : 100vh;
     padding-bottom: 5rem;
 }
 
@@ -83,25 +96,26 @@ a:hover {
     border-right: 1px solid var(--grey);
 }
 
-a.router-link-exact-active{
-background-color: rgba(12, 63, 204, 0.377);
-color: white;
-border-radius: 25px;
+a.router-link-exact-active {
+    background-color: rgba(12, 63, 204, 0.377);
+    color           : white;
+    border-radius   : 25px;
 }
 
-  
+
 @media (max-width: 768px) {
     #sidebar-container {
-      display: none;
+        display: none;
     }
+
     .stat {
         border: 0;
     }
-  }
-  
+}
 
 
-  .options-dashboard {
+
+.options-dashboard {
     position: fixed;
 }
 
@@ -113,6 +127,7 @@ button.btn-create {
     background-color: #163A70;
     color           : white;
 }
+
 a.btn-create {
     background-color: #163A70;
     color           : white;
@@ -125,8 +140,9 @@ a.btn-create {
     padding-right   : 5px;
     padding-top     : 4px;
     padding-bottom  : 4px;
-    border-radius: 4px;
-    margin-left     : -7px;
+    border-radius   : 4px;
+    margin-left     : 1px;
+    margin-top      : 1px;
 
 }
 
@@ -175,7 +191,8 @@ a.btn-panel-admin {
     border: none;
 
 }
-.login{
+
+.login {
     margin-top: 50px;
-    left:280%
+    left      : 280%
 }

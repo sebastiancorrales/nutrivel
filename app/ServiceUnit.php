@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceUnit extends Model
 {
     protected $fillable = [
-        'name', 'address'
+        'name',
+        'address'
     ];
+    public function covenant(){
+        return $this->belongsTo('App\Covenant');
+    }
 }

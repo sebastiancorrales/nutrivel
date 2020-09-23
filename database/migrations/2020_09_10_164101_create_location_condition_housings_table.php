@@ -37,9 +37,9 @@ class CreateLocationConditionHousingsTable extends Migration
             $table->string('service_sanitary')->nullable();
             $table->string('quantity_rooms')->nullable();
             $table->string('number_rooms_where_sleep')->nullable();
-            $table->bigInteger('benficiary_id')->unsigned()->nullable();
+            $table->bigInteger('beneficiary_id')->unsigned()->nullable();
 
-            $table->foreign('benficiary_id')->references('id')->on('beneficiaries');
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
             $table->timestamps();
         });
     }

@@ -13,14 +13,14 @@ class CreateInstitutionalInformacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('institutional_informacions', function (Blueprint $table) {
+        Schema::create('institutional_informations', function (Blueprint $table) {
             $table->id();
             $table->string('home_visit_required');
             $table->string('solidarity_quota_exoneration');
             $table->string('family_context');
             $table->string('title_who_performs_characterization');
-            $table->bigInteger('benficiary_id')->unsigned()->nullable();
-            $table->foreign('benficiary_id')->references('id')->on('beneficiaries');
+            $table->bigInteger('beneficiary_id')->unsigned()->nullable();
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
             $table->timestamps();
         });
     }

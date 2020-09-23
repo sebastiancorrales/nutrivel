@@ -1,6 +1,8 @@
+import axios from 'axios';
+
 const get = async () => {
     try {
-        let res = await fetch('/api/type-populations', {
+        let res = await fetch('/api/beneficiaries', {
             headers: {
                 Accept: 'application/json'
             }
@@ -17,9 +19,9 @@ const find = async (id, request) => {
     try {
         let uri = '';
         if (request == 'edit') {
-            uri = `/api/type-populations/${id}/edit`;
+            uri = `/api/beneficiaries/${id}/edit`;
         } else {
-            uri = `/api/type-populations/${id}`;
+            uri = `/api/beneficiaries/${id}`;
         }
         let res = await fetch(uri, {
             headers: {
@@ -38,7 +40,7 @@ const store = async (form) => {
     try {
         let token = document.getElementById('token').content;
         let fd = new FormData(form);
-        let res = await fetch('/api/type-populations', {
+        let res = await fetch('/api/beneficiaries', {
             method: 'POST',
             body: fd,
             headers: {
@@ -57,9 +59,8 @@ const update = async (form, id) => {
     try {
         let fd = new FormData(form);
         let token = document.getElementById('token').content;
-
         fd.append('_method', 'PUT');
-        let res = await fetch(`/api/type-populations/${id}`, {
+        let res = await fetch(`/api/beneficiaries/${id}`, {
             method: 'POST',
             body: fd,
             headers: {
@@ -80,8 +81,7 @@ const destroy = async (id) => {
         let fd = new FormData();
         let token = document.getElementById('token').content;
         fd.append('_method', 'DELETE');
-
-        let res = await fetch(`/api/type-populations/${id}`, {
+        let res = await fetch(`/api/beneficiaries/${id}`, {
             method: 'POST',
             body: fd,
             headers: {
@@ -102,6 +102,5 @@ export default {
     find,
     store,
     update,
-    destroy,
-
+    destroy
 }

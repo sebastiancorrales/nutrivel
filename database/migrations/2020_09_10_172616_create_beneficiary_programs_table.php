@@ -17,8 +17,8 @@ class CreateBeneficiaryProgramsTable extends Migration
             $table->id();
             $table->date('admission_date');
             $table->bigInteger('program_id')->unsigned()->nullable();
-            $table->bigInteger('benficiary_id')->unsigned()->nullable();
-            $table->foreign('benficiary_id')->references('id')->on('beneficiaries');
+            $table->bigInteger('beneficiary_id')->unsigned()->nullable();
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
             $table->foreign('program_id')->references('id')->on('programs');
             $table->timestamps();
         });

@@ -20,8 +20,8 @@ class CreateSocialProgramsTable extends Migration
             $table->string('some_subsidy_type');
             $table->string('what_subsidy_type');
             $table->string('income_received')->nullable();
-            $table->bigInteger('benficiary_id')->unsigned()->nullable();
-            $table->foreign('benficiary_id')->references('id')->on('beneficiaries');
+            $table->bigInteger('beneficiary_id')->unsigned()->nullable();
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
             $table->timestamps();
         });
     }

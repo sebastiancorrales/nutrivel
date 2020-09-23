@@ -4,6 +4,7 @@
       <div class="form-row">
         <div class="col-6">
           <label for>Nombre:</label>
+          
           <input
             type="text"
             name="name"
