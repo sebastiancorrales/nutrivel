@@ -19,7 +19,7 @@ class Beneficiary extends Model
         'place_of_birth',
         'gender',
         'kinship_other_familily',
-        'civil_status',
+        'civil_st atus',
         'displaced_population',
         'victim_other_type_violence',
         'wich_violence',

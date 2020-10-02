@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const get = async () => {
     try {
         let res = await fetch('/api/beneficiaries', {
@@ -97,10 +95,11 @@ const destroy = async (id) => {
         console.log(error);
     }
 }
+
 export default {
     get,
     find,
     store,
     update,
-    destroy
+    destroy,
 }

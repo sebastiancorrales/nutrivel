@@ -23,7 +23,7 @@ class CreateEducationTable extends Migration
             $table->string('perform_some_course');
             $table->string('wich_course')->nullable();
             $table->bigInteger('beneficiary_id')->unsigned()->nullable();
-            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
