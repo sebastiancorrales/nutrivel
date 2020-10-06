@@ -29,7 +29,7 @@ Route::resource('/covenants', 'CovenantController');
 Route::resource('/service-units', 'ServiceUnitController');
 
 Route::resource('/beneficiaries', 'BeneficiaryController');
-Route::get('/get-beneficiary/{document}', 'BeneficiaryController@getByDocument');
+Route::resource('population-data', 'PopulationDataController');
 Route::resource('/family-structure', 'FamilyStructureController');
 
 

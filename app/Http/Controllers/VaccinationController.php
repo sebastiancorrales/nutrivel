@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SimpleRequest;
 use App\Vaccination;
+use Exception;
 use Illuminate\Http\Request;
 
 class VaccinationController extends Controller
@@ -33,9 +35,19 @@ class VaccinationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SimpleRequest $request)
     {
-        //
+        $vaccination          = new Vaccination();
+        $vaccination->name    = $request->get('name');
+        $vaccination->save();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -46,7 +58,8 @@ class VaccinationController extends Controller
      */
     public function show(Vaccination $vaccination)
     {
-        //
+        return response()->json($vaccination);
+        
     }
 
     /**
@@ -57,7 +70,7 @@ class VaccinationController extends Controller
      */
     public function edit(Vaccination $vaccination)
     {
-        //
+        return response()->json($vaccination);
     }
 
     /**
@@ -67,9 +80,18 @@ class VaccinationController extends Controller
      * @param  \App\Vaccination  $vaccination
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vaccination $vaccination)
+    public function update(SimpleRequest $request, Vaccination $vaccination)
     {
-        //
+        $vaccination->name    = $request->get('name');
+        $vaccination->update();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your update processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -80,6 +102,22 @@ class VaccinationController extends Controller
      */
     public function destroy(Vaccination $vaccination)
     {
-        //
+        try
+        {
+            if($vaccination->delete()){
+                $data = [
+                    'success'   => true,
+                    'status'    => 200,
+                    'message'   => 'Your destroy processed correctly'
+                ];
+        
+                return response()->json($data);
+            }
+        }
+        catch(Exception $e) {
+            if($e->getCode()==23000) {
+                return 'Error 23000';
+            }
+        }
     }
 }

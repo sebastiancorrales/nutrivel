@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SimpleRequest;
 use App\SocialSecurityScheme;
+use Exception;
 use Illuminate\Http\Request;
 
 class SocialSecuritySchemeController extends Controller
@@ -33,9 +35,19 @@ class SocialSecuritySchemeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SimpleRequest $request)
     {
-        //
+        $program          = new SocialSecurityScheme();
+        $program->name    = $request->get('name');
+        $program->save();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -46,7 +58,8 @@ class SocialSecuritySchemeController extends Controller
      */
     public function show(SocialSecurityScheme $socialSecurityScheme)
     {
-        //
+        return response()->json($socialSecurityScheme);
+        
     }
 
     /**
@@ -57,7 +70,8 @@ class SocialSecuritySchemeController extends Controller
      */
     public function edit(SocialSecurityScheme $socialSecurityScheme)
     {
-        //
+        return response()->json($socialSecurityScheme);
+        
     }
 
     /**
@@ -67,9 +81,18 @@ class SocialSecuritySchemeController extends Controller
      * @param  \App\SocialSecurityScheme  $socialSecurityScheme
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SocialSecurityScheme $socialSecurityScheme)
+    public function update(SimpleRequest $request, SocialSecurityScheme $socialSecurityScheme)
     {
-        //
+        $socialSecurityScheme->name    = $request->get('name');
+        $socialSecurityScheme->update();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your update processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -80,6 +103,22 @@ class SocialSecuritySchemeController extends Controller
      */
     public function destroy(SocialSecurityScheme $socialSecurityScheme)
     {
-        //
+        try
+        {
+            if($socialSecurityScheme->delete()){
+                $data = [
+                    'success'   => true,
+                    'status'    => 200,
+                    'message'   => 'Your destroy processed correctly'
+                ];
+        
+                return response()->json($data);
+            }
+        }
+        catch(Exception $e) {
+            if($e->getCode()==23000) {
+                return 'Error 23000';
+            }
+        }
     }
 }

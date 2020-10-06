@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Beneficiary;
 use App\Http\Requests\BeneficiaryRequest;
+use Exception;
 use Illuminate\Http\Request;
 
 class BeneficiaryController extends Controller
@@ -136,6 +137,22 @@ class BeneficiaryController extends Controller
      */
     public function destroy(Beneficiary $beneficiary)
     {
-        //
+        try
+        {
+            if($beneficiary->delete()){
+                $data = [
+                    'success'   => true,
+                    'status'    => 200,
+                    'message'   => 'Your destroy processed correctly'
+                ];
+        
+                return response()->json($data);
+            }
+        }
+        catch(Exception $e) {
+            if($e->getCode()==23000) {
+                return 'Error 23000';
+            }
+        }
     }
 }

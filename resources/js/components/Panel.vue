@@ -74,15 +74,15 @@
           
         </a>
         <div class="collapse" id="administration-options">
-          <a class="nav-link" href="#">Unidades de servicio</a>
-          <a class="nav-link" href="#">Programas</a>
-          <a class="nav-link" href="#">Convenios</a>
+          <router-link class="nav-link" :to="{name:'IndexServiceUnit'}">Unidades de servicio</router-link>
+          <router-link class="nav-link" :to="{name:'IndexCovenant'}">Convenios</router-link>
           <router-link class="nav-link" :to="{name:'TypePopulation'}">Tipo de población</router-link>
-          <a class="nav-link" href="#">Pertenencia etnica</a>
-          <a class="nav-link" href="#">Grupo Etario</a>
-          <a class="nav-link" href="#">Regimen de seguiridad social</a>
-          <a class="nav-link" href="#">Diversidad funcional</a>
-          <a class="nav-link" href="#">Vacunas</a>
+          <router-link class="nav-link" :to="{name:'IndexEthnicity'}">Pertenencia Etnica</router-link>
+          <router-link class="nav-link" :to="{name:'IndexAgeGroup'}">Grupos Etarios</router-link>
+          <router-link class="nav-link" :to="{name:'IndexPrograms'}">Programas</router-link>
+          <router-link class="nav-link" :to="{name:'IndexSocialSecurityScheme'}">Regimen de seguridad social</router-link>
+          <router-link class="nav-link" :to="{name:'IndexFuncionalDivercity'}">Diversidad Funcional</router-link>
+          <router-link class="nav-link" :to="{name:'IndexVaccination'}">Vacunas</router-link>
         </div>
       </li>
     </ul>

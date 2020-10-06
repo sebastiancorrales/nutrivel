@@ -2,9 +2,9 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h1>Tipo de Población</h1>
+        <h1>Unidades de servicio</h1>
         
-        <router-link :to="{name: 'CreateTypePopulation'}" class="btn bnt-info">Crear</router-link>
+        <router-link :to="{name: 'CreateServiceUnit'}" class="btn bnt-info">CREAR UNIDAD DE SERVICIO</router-link>
             
            <div v-if="isLoading">
              cargando...
@@ -14,18 +14,21 @@
           <thead>
             <tr>
               <th scope="col">Nombre</th>
+              <th scope="col">Dirección</th>
+              <th scope="col">Convenio</th>
               <th scope="col">Acciones</th>
             </tr>
             <tbody>
             
-              <tr v-for="typePopulation in typePopulations" :key="typePopulation.id">
+              <tr v-for="data in datas" :key="data.id">
 
-                  <td>{{typePopulation.name}}</td>
+                  <td>{{data.name}}</td>
+                  <td>{{data.address}}</td>
+                  <!-- <td>{{data.covenant.name}}</td> -->
                                   
                   <td class="">
-                    <router-link class="btn-options"  :to="{name: 'EditTypePopulation', params:{id:typePopulation.id}}">Editar</router-link>
-                    <router-link class="btn-options" :to="{name: 'DetailTypePopulation', params:{id:typePopulation.id}}">Detalle</router-link>
-                    <a href="#" class="btn-options" @click.prevent="destroy(typePopulation)">Eliminar</a>
+                    <router-link class="btn-options"  :to="{name: 'EditServiceUnit', params:{id:data.id}}">Editar</router-link>
+                    <a href="#" class="btn-options" @click.prevent="destroy(data)">Eliminar</a>
                   </td>
               </tr>
 
@@ -39,14 +42,14 @@
 </template>
 
 <script>
-import api from "../../containers/TypePopulation";
+import api from "../../containers/ServiceUnit";
 import datatables from "datatables";
 
 
 export default {
   data() {
     return {
-      typePopulations: {},
+      datas: {},
       isLoading: false,
 
     };
@@ -65,11 +68,11 @@ export default {
     },
     get(){
       api.get().then((data) => {
-        this.typePopulations = data;
+        this.datas = data;
       }).finally(this.datatable())
     },
-    destroy(typePopulation){
-      const id = typePopulation.id;
+    destroy(data){
+      const id = data.id;
       confirm('¿Deseas eliminar este registro?');
           api.destroy(id).then(data => {
               if (data.status === 200) {

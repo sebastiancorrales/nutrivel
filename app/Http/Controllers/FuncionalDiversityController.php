@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\FuncionalDiversity;
+use App\Http\Requests\SimpleRequest;
+use Exception;
 use Illuminate\Http\Request;
 
 class FuncionalDiversityController extends Controller
@@ -24,7 +26,7 @@ class FuncionalDiversityController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -33,9 +35,19 @@ class FuncionalDiversityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SimpleRequest $request)
     {
-        //
+        $funcionalDiversity          = new FuncionalDiversity();
+        $funcionalDiversity->name    = $request->get('name');
+        $funcionalDiversity->save();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -46,7 +58,8 @@ class FuncionalDiversityController extends Controller
      */
     public function show(FuncionalDiversity $funcionalDiversity)
     {
-        //
+        return response()->json($funcionalDiversity);
+
     }
 
     /**
@@ -57,7 +70,8 @@ class FuncionalDiversityController extends Controller
      */
     public function edit(FuncionalDiversity $funcionalDiversity)
     {
-        //
+        return response()->json($funcionalDiversity);
+     
     }
 
     /**
@@ -67,9 +81,18 @@ class FuncionalDiversityController extends Controller
      * @param  \App\FuncionalDiversity  $funcionalDiversity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FuncionalDiversity $funcionalDiversity)
+    public function update(SimpleRequest $request, FuncionalDiversity $funcionalDiversity)
     {
-        //
+        $funcionalDiversity->name    = $request->get('name');
+        $funcionalDiversity->update();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your update processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -80,6 +103,22 @@ class FuncionalDiversityController extends Controller
      */
     public function destroy(FuncionalDiversity $funcionalDiversity)
     {
-        //
+        try
+        {
+            if($funcionalDiversity->delete()){
+                $data = [
+                    'success'   => true,
+                    'status'    => 200,
+                    'message'   => 'Your destroy processed correctly'
+                ];
+        
+                return response()->json($data);
+            }
+        }
+        catch(Exception $e) {
+            if($e->getCode()==23000) {
+                return 'Error 23000';
+            }
+        }
     }
 }

@@ -25,7 +25,7 @@
                 
                  
                   <td class="">
-                    <!-- <router-link class="btn-options"  :to="{name: 'EditTypePopulation', params:{id:beneficiary.id}}">Editar</router-link> -->
+                    0<!-- <router-link class="btn-options"  :to="{name: 'EditTypePopulation', params:{id:beneficiary.id}}">Editar</router-link> -->
                     <router-link class="btn-options" :to="{name: 'DetailBeneficiary', params:{id:beneficiary.id}}">Detalle</router-link>
                     <a href="#" class="btn-options" @click.prevent="destroy(beneficiary)">Eliminar</a>
                   </td>
@@ -72,9 +72,9 @@ export default {
       const id = beneficiary.id;
           api.destroy(id).then(data => {
               if (data.status === 200) {
-                alert(beneficiary.id)
+                this.get()
               }
-          }).catch(alert("error al eliminar" + id))
+          })
     }
   },
   beforeCreate() {

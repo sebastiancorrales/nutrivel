@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Covenant;
+use App\Http\Requests\SimpleRequest;
+use Exception;
 use Illuminate\Http\Request;
 
 class CovenantController extends Controller
@@ -33,9 +35,19 @@ class CovenantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SimpleRequest $request)
     {
-        //
+        $covenant          = new Covenant();
+        $covenant->name    = $request->get('name');
+        $covenant->save();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -46,7 +58,8 @@ class CovenantController extends Controller
      */
     public function show(Covenant $covenant)
     {
-        //
+        return response()->json($covenant);
+        
     }
 
     /**
@@ -57,7 +70,8 @@ class CovenantController extends Controller
      */
     public function edit(Covenant $covenant)
     {
-        //
+        return response()->json($covenant);
+        
     }
 
     /**
@@ -67,9 +81,18 @@ class CovenantController extends Controller
      * @param  \App\Covenant  $covenant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Covenant $covenant)
+    public function update(SimpleRequest $request, Covenant $covenant)
     {
-        //
+        $covenant->name    = $request->get('name');
+        $covenant->update();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your update processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -80,6 +103,22 @@ class CovenantController extends Controller
      */
     public function destroy(Covenant $covenant)
     {
-        //
+        try
+        {
+            if($covenant->delete()){
+                $data = [
+                    'success'   => true,
+                    'status'    => 200,
+                    'message'   => 'Your destroy processed correctly'
+                ];
+        
+                return response()->json($data);
+            }
+        }
+        catch(Exception $e) {
+            if($e->getCode()==23000) {
+                return 'Error 23000';
+            }
+        }
     }
 }

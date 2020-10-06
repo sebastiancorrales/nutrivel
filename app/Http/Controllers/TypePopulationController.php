@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TypePopulationRequest;
+use App\Http\Requests\SimpleRequest;
 use App\TypePopulation;
 use Exception;
 use Illuminate\Http\Request;
@@ -35,7 +35,7 @@ class TypePopulationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TypePopulationRequest $request)
+    public function store(SimpleRequest $request)
     {
 
         $typePopulation          = new TypePopulation();
@@ -86,7 +86,7 @@ class TypePopulationController extends Controller
      * @param  \App\TypePopulation  $typePopulation
      * @return \Illuminate\Http\Response
      */
-    public function update(TypePopulationRequest $request, TypePopulation $typePopulation)
+    public function update(SimpleRequest $request, TypePopulation $typePopulation)
     {
         $typePopulation->name    = $request->get('name');
         $typePopulation->update();
@@ -109,14 +109,18 @@ class TypePopulationController extends Controller
     public function destroy(TypePopulation $typePopulation)
     {
         try
-        {   
-            $typePopulation = TypePopulation::find($typePopulation);
+        {
             if($typePopulation->delete()){
-                return 'Eliminado';
+                $data = [
+                    'success'   => true,
+                    'status'    => 200,
+                    'message'   => 'Your destroy processed correctly'
+                ];
+        
+                return response()->json($data);
             }
         }
         catch(Exception $e) {
-            //Log::error($e->getMessage());
             if($e->getCode()==23000) {
                 return 'Error 23000';
             }

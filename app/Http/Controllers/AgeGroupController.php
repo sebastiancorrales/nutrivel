@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\AgeGroup;
+use App\Http\Requests\SimpleRequest;
+use Exception;
 use Illuminate\Http\Request;
 
 class AgeGroupController extends Controller
@@ -33,9 +35,19 @@ class AgeGroupController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SimpleRequest $request)
     {
-        //
+        $ageGroup          = new AgeGroup();
+        $ageGroup->name    = $request->get('name');
+        $ageGroup->save();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -46,7 +58,8 @@ class AgeGroupController extends Controller
      */
     public function show(AgeGroup $ageGroup)
     {
-        //
+        return response()->json($ageGroup);
+        
     }
 
     /**
@@ -57,7 +70,8 @@ class AgeGroupController extends Controller
      */
     public function edit(AgeGroup $ageGroup)
     {
-        //
+        return response()->json($ageGroup);
+        
     }
 
     /**
@@ -67,9 +81,18 @@ class AgeGroupController extends Controller
      * @param  \App\AgeGroup  $ageGroup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AgeGroup $ageGroup)
+    public function update(SimpleRequest $request, AgeGroup $ageGroup)
     {
-        //
+        $ageGroup->name    = $request->get('name');
+        $ageGroup->update();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your update processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -80,6 +103,22 @@ class AgeGroupController extends Controller
      */
     public function destroy(AgeGroup $ageGroup)
     {
-        //
+        try
+        {
+            if($ageGroup->delete()){
+                $data = [
+                    'success'   => true,
+                    'status'    => 200,
+                    'message'   => 'Your destroy processed correctly'
+                ];
+        
+                return response()->json($data);
+            }
+        }
+        catch(Exception $e) {
+            if($e->getCode()==23000) {
+                return 'Error 23000';
+            }
+        }
     }
 }

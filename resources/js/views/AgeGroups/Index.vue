@@ -2,9 +2,9 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h1>Tipo de Población</h1>
+        <h1>Grupo Etario</h1>
         
-        <router-link :to="{name: 'CreateTypePopulation'}" class="btn bnt-info">Crear</router-link>
+        <router-link :to="{name: 'CreateAgeGroup'}" class="btn bnt-info">Crear</router-link>
             
            <div v-if="isLoading">
              cargando...
@@ -18,14 +18,13 @@
             </tr>
             <tbody>
             
-              <tr v-for="typePopulation in typePopulations" :key="typePopulation.id">
+              <tr v-for="ageGroup in ageGroups" :key="ageGroup.id">
 
-                  <td>{{typePopulation.name}}</td>
+                  <td>{{ageGroup.name}}</td>
                                   
                   <td class="">
-                    <router-link class="btn-options"  :to="{name: 'EditTypePopulation', params:{id:typePopulation.id}}">Editar</router-link>
-                    <router-link class="btn-options" :to="{name: 'DetailTypePopulation', params:{id:typePopulation.id}}">Detalle</router-link>
-                    <a href="#" class="btn-options" @click.prevent="destroy(typePopulation)">Eliminar</a>
+                    <router-link class="btn-options"  :to="{name: 'EditAgeGroup', params:{id:ageGroup.id}}">Editar</router-link>
+                    <a href="#" class="btn-options" @click.prevent="destroy(ageGroup)">Eliminar</a>
                   </td>
               </tr>
 
@@ -39,14 +38,14 @@
 </template>
 
 <script>
-import api from "../../containers/TypePopulation";
+import api from "../../containers/AgeGroup";
 import datatables from "datatables";
 
 
 export default {
   data() {
     return {
-      typePopulations: {},
+      ageGroups: {},
       isLoading: false,
 
     };
@@ -65,11 +64,11 @@ export default {
     },
     get(){
       api.get().then((data) => {
-        this.typePopulations = data;
+        this.ageGroups = data;
       }).finally(this.datatable())
     },
-    destroy(typePopulation){
-      const id = typePopulation.id;
+    destroy(ageGroup){
+      const id = ageGroup.id;
       confirm('¿Deseas eliminar este registro?');
           api.destroy(id).then(data => {
               if (data.status === 200) {

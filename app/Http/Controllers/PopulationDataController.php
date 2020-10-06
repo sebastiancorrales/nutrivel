@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Covenants;
+use App\Beneficiary;
+use App\Http\Requests\PopulationDataRequest;
 use Illuminate\Http\Request;
 
-class CovenantsController extends Controller
+class PopulationDataController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,18 +34,31 @@ class CovenantsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PopulationDataRequest $request)
     {
-        //
+        $document = $request->get('document_number');
+        $beneficiary = Beneficiary::where('document_number', '=', $document)->get();
+        // $beneficiary->pupulationType();
+        // $beneficiary->ageGroup();
+        // $beneficiary->ethnicity();
+        
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly',
+            'beneficiary'   => $request
+        ];
+
+        return response()->json($data);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Covenants  $covenants
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Covenants $covenants)
+    public function show($id)
     {
         //
     }
@@ -52,10 +66,10 @@ class CovenantsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Covenants  $covenants
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Covenants $covenants)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +78,10 @@ class CovenantsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Covenants  $covenants
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Covenants $covenants)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +89,10 @@ class CovenantsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Covenants  $covenants
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Covenants $covenants)
+    public function destroy($id)
     {
         //
     }

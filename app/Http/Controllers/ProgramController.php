@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SimpleRequest;
 use App\Program;
+use Exception;
 use Illuminate\Http\Request;
 
 class ProgramController extends Controller
@@ -33,9 +35,19 @@ class ProgramController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SimpleRequest $request)
     {
-        //
+        $program          = new Program();
+        $program->name    = $request->get('name');
+        $program->save();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -46,7 +58,7 @@ class ProgramController extends Controller
      */
     public function show(Program $program)
     {
-        //
+        return response()->json($program);
     }
 
     /**
@@ -57,7 +69,7 @@ class ProgramController extends Controller
      */
     public function edit(Program $program)
     {
-        //
+        return response()->json($program);
     }
 
     /**
@@ -69,7 +81,16 @@ class ProgramController extends Controller
      */
     public function update(Request $request, Program $program)
     {
-        //
+        $program->name    = $request->get('name');
+        $program->update();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your update processed correctly'
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -80,6 +101,22 @@ class ProgramController extends Controller
      */
     public function destroy(Program $program)
     {
-        //
+        try
+        {
+            if($program->delete()){
+                $data = [
+                    'success'   => true,
+                    'status'    => 200,
+                    'message'   => 'Your destroy processed correctly'
+                ];
+        
+                return response()->json($data);
+            }
+        }
+        catch(Exception $e) {
+            if($e->getCode()==23000) {
+                return 'Error 23000';
+            }
+        }
     }
 }
