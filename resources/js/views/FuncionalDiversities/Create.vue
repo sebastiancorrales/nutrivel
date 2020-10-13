@@ -49,6 +49,7 @@ export default {
         if (data.status === 200) {
           console.log("creado");
           $(".toast").toast("show");
+          this.form.name = ""
         } else {
           console.log("paila mono");
         }

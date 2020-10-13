@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class LocationConditionHousing extends Model
 {
     protected $fillable = [
+        'state',
+        'departament',
         'zone',
         'neighborhood',
         'address',

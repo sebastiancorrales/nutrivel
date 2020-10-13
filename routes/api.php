@@ -18,18 +18,22 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('/vaccinations', 'VaccinationController');
-Route::resource('/funcional-diversities', 'FuncionalDiversityController');
-Route::resource('/social-security-schemes', 'SocialSecuritySchemeController');
 Route::resource('/programs', 'ProgramController');
+Route::resource('/covenants', 'CovenantController');
 Route::resource('/age-groups', 'AgeGroupController');
 Route::resource('/ethnicities', 'EthnicityController');
-Route::resource('/type-populations', 'TypePopulationController');
-Route::resource('/covenants', 'CovenantController');
+Route::resource('/vaccinations', 'VaccinationController');
 Route::resource('/service-units', 'ServiceUnitController');
+Route::resource('/type-populations', 'TypePopulationController');
+Route::resource('/funcional-diversities', 'FuncionalDiversityController');
+Route::resource('/social-security-schemes', 'SocialSecuritySchemeController');
 
+Route::resource('/education', 'EducationController');
 Route::resource('/beneficiaries', 'BeneficiaryController');
+Route::resource('/food-security', 'FoodSecurityController');
 Route::resource('population-data', 'PopulationDataController');
+Route::resource('/social-security', 'SocialSecurityController');
+Route::resource('/social-programs', 'SocialProgramController');
 Route::resource('/family-structure', 'FamilyStructureController');
-
-
+Route::resource('/main-economic-supplier', 'MainEconomicSupplierController');
+Route::resource('/location-condition-housing', 'LocationConditionHousingController');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Beneficiary;
+use App\Http\Requests\SocialProgramRequest;
 use App\SocialProgram;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class SocialProgramController extends Controller
      */
     public function index()
     {
-        //
+        return SocialProgram::all();
     }
 
     /**
@@ -33,9 +35,28 @@ class SocialProgramController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SocialProgramRequest $request)
     {
-        //
+        $document = $request->get('document_number');
+        $bene = Beneficiary::where('document_number', '=', $document)->get();
+        $id = $bene[0]->id;
+
+        $socialProgram = new SocialProgram();
+        $socialProgram->enrolled_another_social_program = $request->get('enrolled_another_social_program');
+        $socialProgram->what_program = $request->get('what_program');
+        $socialProgram->some_subsidy_type = $request->get('some_subsidy_type');
+        $socialProgram->what_subsidy_type = $request->get('what_subsidy_type');
+        $socialProgram->income_received = $request->get('income_received');
+        $socialProgram->beneficiary_id = $id;
+
+        $socialProgram->save();
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly',
+        ];
+
+        return response()->json($data);
     }
 
     /**

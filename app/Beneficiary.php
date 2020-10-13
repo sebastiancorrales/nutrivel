@@ -31,18 +31,22 @@ class Beneficiary extends Model
         'birth_term',
         'number_months_birth',
         'family_type',
+    
+        'population_type_id',
+        'age_group_id',
+        'ethnic_id'
     ];
-    public function pupulationType()
+    public function populationType()
     {
-        return $this->belongsTo('App\TypePopulation', 'id');
+        return $this->belongsTo('App\TypePopulation');
     }
     public function ageGroup()
     {
-        return $this->belongsTo('App\AgeGroup', 'id');
+        return $this->belongsTo('App\AgeGroup');
     }
-    public function ethnicity()
+    public function ethnic()
     {
-        return $this->belongsTo('App\Ethnicity', 'id');
+        return $this->belongsTo('App\Ethnicity');
     }
     public function familyStructure()
     {

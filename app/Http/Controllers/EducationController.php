@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Beneficiary;
 use App\Education;
+use App\Http\Requests\EducationRequest;
 use Illuminate\Http\Request;
 
 class EducationController extends Controller
@@ -14,7 +16,7 @@ class EducationController extends Controller
      */
     public function index()
     {
-        //
+        return Education::all();
     }
 
     /**
@@ -33,9 +35,31 @@ class EducationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EducationRequest $request)
     {
-        //
+        $document = $request->get('document_number');
+        $bene = Beneficiary::where('document_number', '=', $document)->get();
+        $id = $bene[0]->id;
+
+        $education = new Education();
+        $education->know_read_write = $request->get('know_read_write');
+        $education->study_currently = $request->get('study_currently');
+        $education->educational_level = $request->get('educational_level');
+        $education->study_day = $request->get('study_day');
+        $education->course_study_currently = $request->get('course_study_currently');
+        $education->perform_some_course = $request->get('perform_some_course');
+        $education->wich_course = $request->get('wich_course');
+        $education->beneficiary_id = $id;
+
+        $education->save();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly',
+        ];
+
+        return response()->json($data);
     }
 
     /**

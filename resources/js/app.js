@@ -21,7 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('app', require('./components/AppComponent.vue').default);
 import router from './routes';
-
+import toastr from "toastr";
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -30,5 +30,6 @@ import router from './routes';
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    toastr
 });

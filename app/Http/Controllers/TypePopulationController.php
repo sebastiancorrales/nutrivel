@@ -122,7 +122,13 @@ class TypePopulationController extends Controller
         }
         catch(Exception $e) {
             if($e->getCode()==23000) {
-                return 'Error 23000';
+                $data = [
+                    'success'   => false,
+                    'status'    => 23000,
+                    'message'   => 'Your destroy processed wrong'
+                ];
+        
+                return response()->json($data);
             }
         }
     }

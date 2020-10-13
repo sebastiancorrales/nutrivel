@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Beneficiary;
 use App\FamilyStructure;
+use App\Http\Requests\FamilyStructureRequest;
 use Illuminate\Http\Request;
 
 class FamilyStructureController extends Controller
@@ -14,7 +16,8 @@ class FamilyStructureController extends Controller
      */
     public function index()
     {
-        return FamilyStructure::join('beneficiaries', 'beneficiaries.id', '=', 'family_structures.beneficiary_id')->get();
+        return FamilyStructure::with('beneficiary')->get();
+        // return FamilyStructure::with('beneficiary', 'beneficiaries.id', '=', 'family_structures.beneficiary_id')->get();
     }
 
     /**
@@ -33,9 +36,28 @@ class FamilyStructureController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FamilyStructureRequest $request)
     {
-        //
+        $document = $request->get('document_number');
+        $bene = Beneficiary::where('document_number', '=', $document)->get();
+        $id = $bene[0]->id;
+       
+        $familyStructure = new FamilyStructure();
+        $familyStructure->name = $request->get('name');
+        $familyStructure->kinship_family = $request->get('kinship_family');
+        $familyStructure->birthday = $request->get('birthday');
+        $familyStructure->beneficiary_id = $id;
+
+        $familyStructure->save();
+
+        
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly',
+        ];
+
+        return response()->json($data);
     }
 
     /**

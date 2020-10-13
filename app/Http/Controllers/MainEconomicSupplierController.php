@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Beneficiary;
+use App\Http\Requests\MainEconomicSupplierRequest;
 use App\MainEconomicSupplier;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class MainEconomicSupplierController extends Controller
      */
     public function index()
     {
-        //
+        return MainEconomicSupplier::all();
     }
 
     /**
@@ -33,9 +35,29 @@ class MainEconomicSupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MainEconomicSupplierRequest $request)
     {
-        //
+        $document = $request->get('document_number');
+        $bene = Beneficiary::where('document_number', '=', $document)->get();
+        $id = $bene[0]->id;
+
+        $mainEconomicSupplier = new MainEconomicSupplier();
+        $mainEconomicSupplier->name = $request->get('name');
+        $mainEconomicSupplier->occupation = $request->get('occupation');
+        $mainEconomicSupplier->workplace = $request->get('workplace');
+        $mainEconomicSupplier->income = $request->get('income');
+        $mainEconomicSupplier->expenses = $request->get('expenses');
+        $mainEconomicSupplier->beneficiary_id = $id;
+
+        $mainEconomicSupplier->save();
+
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly',
+        ];
+
+        return response()->json($data);
     }
 
     /**

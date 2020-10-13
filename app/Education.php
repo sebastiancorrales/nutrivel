@@ -8,10 +8,10 @@ class Education extends Model
 {
     protected $fillable = [
         'know_read_write',
-        'educational_level',
         'study_currently',
-        'course_study_currently',
+        'educational_level',
         'study_day',
+        'course_study_currently',
         'perform_some_course',
         'wich_course',
         'beneficiary_id'

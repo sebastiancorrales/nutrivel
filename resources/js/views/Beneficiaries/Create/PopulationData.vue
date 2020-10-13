@@ -4,35 +4,54 @@
     <div class="col">
       <form action method="post" @submit="create">
         <label for>Tipo de Población</label>
-        <select name="type_population" class="custom-select">
+        <select
+          name="type_population"
+          v-model="form.typePopulation"
+          class="custom-select"
+        >
           <option
             v-for="typePopulation in typePopulations"
             :key="typePopulation.id"
-            value="typePopulation.id"
+            :value="typePopulation.id"
           >
             {{ typePopulation.name }}
           </option>
         </select>
         <label for>Grupo etario</label>
-        <select name="age_group" class="custom-select">
-          <option v-for="ageGroup in ageGroups" :key="ageGroup.id" value="ageGroup.id">
+        <select name="age_group" class="custom-select" v-model="form.ageGroups">
+          <option
+            v-for="ageGroup in ageGroups"
+            :key="ageGroup.id"
+            :value="ageGroup.id"
+          >
             {{ ageGroup.name }}
           </option>
         </select>
         <label for>Pertenencia etnica</label>
-        <select name="ethnicity" class="custom-select">
-          <option v-for="ethnicity in ethnicities" :key="ethnicity.id" value="ethnicity.id">
+        <select
+          name="ethnicity"
+          class="custom-select"
+          v-model="form.ethnicities"
+        >
+          <option
+            v-for="ethnicity in ethnicities"
+            :key="ethnicity.id"
+            :value="ethnicity.id"
+          >
             {{ ethnicity.name }}
           </option>
         </select>
-        <input type="hidden" v-model="document" name="document_number"/>
-
+        <input type="hidden" v-model="document" name="document_number" />
+        {{ form }}
         <div class="row">
           <div class="col">
             <button class="btn mt-2 btn-primary">Guardar</button>
           </div>
         </div>
       </form>
+       <div v-show="!nextComponent" class="row">
+          <router-link class="btn-options right" :to="{name: 'CreateFamilyStructure', params:{id:document}}">Estructura Familiar</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -49,6 +68,7 @@ export default {
       ethnicities: {},
       ageGroups: {},
       document: 0,
+      nextComponent: false,
       form: {
         typePopulation: null,
         ethnicities: null,
@@ -71,12 +91,11 @@ export default {
     },
     create(e) {
       e.preventDefault();
-       api.populationDataStore(e.target).then((data) => {
+      api.populationDataStore(e.target).then((data) => {
         if (data.status === 200) {
           console.log("creado");
-            console.log(data);
-            // $(".toast").toast("show");
-       
+          console.log(data);
+          this.nextComponent = true;
         } else {
           console.log("paila mono");
         }

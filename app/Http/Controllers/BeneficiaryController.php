@@ -17,9 +17,9 @@ class BeneficiaryController extends Controller
     public function index()
     {
         return Beneficiary::with(
-            'pupulationType',
+            'populationType',
             'ageGroup',
-            'ethnicity',
+            'ethnic',
             'familyStructure',
             'socialProgram',
             'education',
@@ -93,9 +93,9 @@ class BeneficiaryController extends Controller
     public function show(Beneficiary $beneficiary)
     {
         return $beneficiary::with(
-            'pupulationType',
+            'populationType',
             'ageGroup',
-            'ethnicity',
+            'ethnic',
             'familyStructure',
             'socialProgram',
             'education',

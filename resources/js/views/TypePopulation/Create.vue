@@ -11,46 +11,40 @@
             name="name"
             ref="my_input"
             v-model="form.name"
-            class="form-control "
+            class="form-control"
             required
           />
-          {{form.name}}
-          <br>
+          {{ form.name }}
+          <br />
           <button class="btn btn-info">Guardar</button>
         </div>
       </div>
     </form>
-
-    <!-- Toast de notificación -->
-    <notification-toast></notification-toast>
   </div>
 </template>
 
 <script>
 import api from "../../containers/TypePopulation";
-import NotificationToast from "../../components/NotificationComponent";
+import toastr from "toastr";
 
 export default {
-  components: { NotificationToast },
-
   data() {
     return {
       form: {
         name: "",
-        address:""
+        address: "",
       },
     };
   },
   methods: {
     create(e) {
       e.preventDefault();
-      
+
       api.store(e.target).then((data) => {
         if (data.status === 200) {
-          console.log("creado");
-          $(".toast").toast("show");
+          toastr.success("Se ha creado correctamente"); 
         } else {
-          console.log("paila mono");
+          toastr.error("Error");
         }
       });
     },

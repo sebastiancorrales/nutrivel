@@ -9,4 +9,7 @@ class AgeGroup extends Model
     protected $fillable = [
         'name',
     ];
+    public function beneficiary() {
+        return $this->belongsToMany(Beneficiary::class);
+    }
 }

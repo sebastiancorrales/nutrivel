@@ -15,6 +15,8 @@ class CreateLocationConditionHousingsTable extends Migration
     {
         Schema::create('location_condition_housings', function (Blueprint $table) {
             $table->id();
+            $table->string('state', 250)->nullable();
+            $table->string('departament', 250)->nullable();
             $table->string('zone', 250)->nullable();
             $table->string('neighborhood', 250)->nullable();
             $table->string('address', 250)->nullable();

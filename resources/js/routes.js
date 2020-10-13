@@ -8,6 +8,13 @@ import IndexBeneficiaries from "./views/Beneficiaries/Index"
 
 import CreateBeneficiary from "./views/Beneficiaries/Create"
 import CreatePopulationData from "./views/Beneficiaries/Create/PopulationData";
+import CreateFamilyStructure from "./views/Beneficiaries/Create/FamilyStructure";
+import CreateSocialProgram from "./views/Beneficiaries/Create/SocialPrograms";
+import CreateEducation from "./views/Beneficiaries/Create/Education";
+import CreateSocialSecurity from "./views/Beneficiaries/Create/SocialSecurity";
+import CreateMainEconomicSupplier from "./views/Beneficiaries/Create/MainEconomicSupplier";
+import CreateFoodSecurity from "./views/Beneficiaries/Create/FoodSecurity";
+import CreateLocationConditionHousing from "./views/Beneficiaries/Create/LocationConditionHousing";
 
 
 import EditBeneficiary from "./views/Beneficiaries/Edit"
@@ -88,6 +95,41 @@ export default new VueRouter({
             path: '/beneficiaries/create/population-data/:id',
             name: 'CreatePopulationData',
             component: CreatePopulationData
+        },
+        {
+            path: '/beneficiaries/create/family-structure/:id',
+            name: 'CreateFamilyStructure',
+            component: CreateFamilyStructure
+        },
+        {
+            path: '/beneficiaries/create/social-programs/:id',
+            name: 'CreateSocialProgram',
+            component: CreateSocialProgram
+        },
+        {
+            path: '/beneficiaries/create/education/:id',
+            name: 'CreateEducation',
+            component: CreateEducation
+        },
+        {
+            path: '/beneficiaries/create/social-security/:id',
+            name: 'CreateSocialSecurity',
+            component: CreateSocialSecurity
+        },
+        {
+            path: '/beneficiaries/create/main-economic-supplier/:id',
+            name: 'CreateMainEconomicSupplier',
+            component: CreateMainEconomicSupplier
+        },
+        {
+            path: '/beneficiaries/create/food-security/:id',
+            name: 'CreateFoodSecurity',
+            component: CreateFoodSecurity
+        },
+        {
+            path: '/beneficiaries/create/location-condition-housing/:id',
+            name: 'CreateLocationConditionHousing',
+            component: CreateLocationConditionHousing
         },
         // detail
         {

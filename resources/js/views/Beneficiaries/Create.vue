@@ -255,7 +255,7 @@
       </div>
     </form>
 
-    <div v-show="!nextCoponent" class="row">
+    <div v-show="!nextComponent" class="row">
         <router-link class="btn-options right" :to="{name: 'CreatePopulationData', params:{id: form.document_number}}">Datos Poblacionales</router-link>
     </div>
 
@@ -288,7 +288,7 @@ export default {
         nutritional_state_income: "",
       },
       nextForm: true,
-      nextCoponent: false
+      nextComponent: false
     };
   },
   methods: {

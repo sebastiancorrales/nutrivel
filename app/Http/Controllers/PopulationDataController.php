@@ -37,16 +37,17 @@ class PopulationDataController extends Controller
     public function store(PopulationDataRequest $request)
     {
         $document = $request->get('document_number');
-        $beneficiary = Beneficiary::where('document_number', '=', $document)->get();
-        // $beneficiary->pupulationType();
-        // $beneficiary->ageGroup();
-        // $beneficiary->ethnicity();
+        $bene = Beneficiary::where('document_number', '=', $document)->get();
+        $beneficiary = $bene[0];
+        $beneficiary->population_type_id = $request->get('type_population');
+        $beneficiary->age_group_id = $request->get('age_group');
+        $beneficiary->ethnic_id = $request->get('ethnicity');
+        $beneficiary->update();
         
         $data = [
             'success'   => true,
             'status'    => 200,
             'message'   => 'Your store processed correctly',
-            'beneficiary'   => $request
         ];
 
         return response()->json($data);
@@ -81,9 +82,23 @@ class PopulationDataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PopulationDataRequest $request)
     {
-        //
+        $document = $request->get('document_number');
+        $bene = Beneficiary::where('document_number', '=', $document)->get();
+        $beneficiary = $bene[0];
+        $beneficiary->population_type_id = $request->get('type_population');
+        $beneficiary->age_group_id = $request->get('age_group');
+        $beneficiary->ethnic_id = $request->get('ethnicity');
+        $beneficiary->update();
+        
+        $data = [
+            'success'   => true,
+            'status'    => 200,
+            'message'   => 'Your store processed correctly',
+        ];
+
+        return response()->json($data);
     }
 
     /**

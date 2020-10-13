@@ -41,53 +41,54 @@
 <script>
 import api from "../../containers/TypePopulation";
 import datatables from "datatables";
-
+import toastr from "toastr";
 
 export default {
   data() {
     return {
       typePopulations: {},
       isLoading: false,
-
     };
   },
-  methods:{
-
-    datatable(){
-      $(document).ready( function () {
-        $('#table').DataTable(
-          {
-            searching: false,
-            languaje:"spanish"
-          }
-        );    
-      } );
+  methods: {
+    datatable() {
+      $(document).ready(function () {
+        $("#table").DataTable({
+          searching: false,
+          languaje: "spanish",
+        });
+      });
     },
-    get(){
-      api.get().then((data) => {
-        this.typePopulations = data;
-      }).finally(this.datatable())
+    get() {
+      api
+        .get()
+        .then((data) => {
+          this.typePopulations = data;
+        })
+        .finally(this.datatable());
     },
-    destroy(typePopulation){
+    destroy(typePopulation) {
       const id = typePopulation.id;
-      confirm('¿Deseas eliminar este registro?');
-          api.destroy(id).then(data => {
-              if (data.status === 200) {
-                this.get();
-              }
-          })
-    }
+      api.destroy(id).then((data) => {
+        if (data.status === 200) {
+          this.get();
+          toastr.success("Se ha creado correctamente");
+        } else {
+          toastr.error(
+            "No puede eliminar este registro porque se está usando en otros componentes"
+          );
+        }
+      });
+    },
+  },
+  beforeCreate() {},
+  created() {
+    this.get();
+    console.log("create");
   },
   beforeCreate() {
-    
+    console.log("before create");
   },
-  created(){
-    this.get()
-    console.log("create")
-  },
-  beforeCreate(){
-    console.log("before create")
-  }
 };
 </script>
 
