@@ -10,13 +10,12 @@
             type="text"
             name="name"
             ref="my_input"
-            
             v-model="form.name"
-            class="form-control "
+            class="form-control"
             required
           />
-          {{form.name}}
-          <br>
+          {{ form.name }}
+          <br />
           <button class="btn btn-info">Guardar</button>
         </div>
       </div>
@@ -44,11 +43,11 @@ export default {
   methods: {
     create(e) {
       e.preventDefault();
-      
+
       api.store(e.target).then((data) => {
         if (data.status === 200) {
           console.log("creado");
-          $(".toast").toast("show");
+          toastr.success("Se ha creado correctamente");
         } else {
           console.log("paila mono");
         }

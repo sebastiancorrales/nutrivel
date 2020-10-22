@@ -6,7 +6,9 @@ use App\Beneficiary;
 use App\Http\Requests\BeneficiaryRequest;
 use Exception;
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\BeneficiaryExport;
 class BeneficiaryController extends Controller
 {
     /**
@@ -72,7 +74,7 @@ class BeneficiaryController extends Controller
         $beneficiary->number_months_birth               = $request->get('number_months_birth');
         $beneficiary->family_type                       = $request->get('family_type');
         $beneficiary->authorize_handling_information    = "SI";
-        $beneficiary->registration_date                 ="2020/10/2";
+        $beneficiary->registration_date                 = "2020/10/2";
         $beneficiary->save();
 
         $data = [
@@ -137,22 +139,40 @@ class BeneficiaryController extends Controller
      */
     public function destroy(Beneficiary $beneficiary)
     {
-        try
-        {
-            if($beneficiary->delete()){
+        try {
+            if ($beneficiary->delete()) {
                 $data = [
                     'success'   => true,
                     'status'    => 200,
                     'message'   => 'Your destroy processed correctly'
                 ];
-        
+
                 return response()->json($data);
             }
-        }
-        catch(Exception $e) {
-            if($e->getCode()==23000) {
+        } catch (Exception $e) {
+            if ($e->getCode() == 23000) {
                 return 'Error 23000';
             }
         }
+    }
+    public function exportPdf()
+    {
+        $beneficiaries = Beneficiary::with(
+            'populationType',
+            'ageGroup',
+            'ethnic',
+            'familyStructure',
+            'socialProgram',
+            'education',
+            'socialSecurity',
+            'mainEconomicSupplier',
+            'foodSecurity',
+            'locationConditionHousing'
+        )->get();
+        $pdf = PDF::loadView('pdf.beneficiaries', compact('beneficiaries'));
+        return $pdf->download('Beneficiaries-list.pdf');
+    }
+    public function exportExcel(){
+        return Excel::download(new BeneficiaryExport, 'listado de beneficiarios.xlsx');
     }
 }

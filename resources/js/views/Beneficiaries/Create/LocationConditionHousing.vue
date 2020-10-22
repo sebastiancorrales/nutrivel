@@ -352,6 +352,8 @@ export default {
       api.store(e.target).then((data) => {
         if (data.status === 200) {
           this.nextComponent = true;
+          toastr.success("Se ha creado correctamente"); 
+
         } else {
           console.log("paila mono");
         }

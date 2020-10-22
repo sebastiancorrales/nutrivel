@@ -3,6 +3,8 @@ import Router from 'vue-router';
 
 // Componentes
 import DashBoard from "./views/DashBoard"
+import Reports from "./views/Reports"
+import NutritionalAssessment from "./views/NutritionalAssessment/Index"
 
 import IndexBeneficiaries from "./views/Beneficiaries/Index"
 
@@ -78,6 +80,16 @@ export default new VueRouter({
             path: '/',
             name: 'home',
             component: DashBoard
+        },
+        {
+            path: '/reports',
+            name: 'reports',
+            component: Reports
+        },
+        {
+            path: '/nutritional-assessment',
+            name: 'NutritionalAssessment',
+            component: NutritionalAssessment
         },
         //* Beneficiaries Routes *//
         {

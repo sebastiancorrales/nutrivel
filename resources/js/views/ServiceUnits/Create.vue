@@ -60,7 +60,7 @@ export default {
       api.store(e.target).then((data) => {
         if (data.status === 200) {
           console.log("creado");
-          $(".toast").toast("show");
+          toastr.success("Se ha creado correctamente");
         } else {
           console.log("paila mono");
         }

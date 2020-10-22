@@ -18,13 +18,14 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/{path?}', [
+Route::get('/app/{path?}', [
     'uses'  => 'AppController@app',
     'as'    => 'vue',
     'where' => ['path' => '.*']
 ]);
 
-
+Route::get('beneficiary-list-pdf', 'BeneficiaryController@exportPdf')->name('beneficiary.pdf');
+Route::get('beneficiary-list-excel', 'BeneficiaryController@exportExcel')->name('beneficiary.excel');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

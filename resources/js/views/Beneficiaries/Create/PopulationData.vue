@@ -95,6 +95,8 @@ export default {
         if (data.status === 200) {
           console.log("creado");
           console.log(data);
+          toastr.success("Se ha creado correctamente"); 
+
           this.nextComponent = true;
         } else {
           console.log("paila mono");

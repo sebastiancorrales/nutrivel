@@ -8,7 +8,7 @@
 @import '~bootstrap/scss/bootstrap';
 
 //Toastr
-@import '~toastr/build/toastr.css';
+@import '~toastr/toastr';
 
 :root {
     --primary: #111B54;
@@ -17,7 +17,7 @@
 }
 
 body {
-    overflow   : hidden;
+    // overflow   : hidden;
     font-family: 'Muli', sans-serif;
     font-weight: 300;
     color      : var(--primary);
@@ -82,7 +82,7 @@ a:hover {
 }
 
 #content {
-    overflow-y    : auto;
+    // overflow-y    : auto;
     height        : 100vh;
     padding-bottom: 5rem;
 }
@@ -198,4 +198,13 @@ a.btn-panel-admin {
 .login {
     margin-top: 50px;
     left      : 280%
+}
+.menu, navbar-nav{
+    background-color: #2C364C !important;
+}
+.menu ul li a{
+    color: #BBC6D4;
+}
+.menu ul li router-link{
+    color: #BBC6D4;
 }

@@ -1,9 +1,6 @@
 <template>
   <div class="d-flex" id="content-wrapper">
-    <div id="sidebar-container" class="bg-primary">
-      <div class="logo">
-        <h4 class="text-light font-weight-bold mb-0">NUTRIR</h4>
-      </div>
+    <div id="sidebar-container" class="menu">
       <panel></panel>
     </div>
     <div class="w-100">

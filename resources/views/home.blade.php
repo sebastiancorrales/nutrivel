@@ -7,15 +7,8 @@
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
+                <h3>Exportar PDF</h3>
+                <a href="{{route('beneficiary.pdf')}}"> click aqui para descargar en pdf a los usuarios</a>
             </div>
         </div>
     </div>

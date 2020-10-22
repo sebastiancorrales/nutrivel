@@ -256,7 +256,14 @@
     </form>
 
     <div v-show="!nextComponent" class="row">
-        <router-link class="btn-options right" :to="{name: 'CreatePopulationData', params:{id: form.document_number}}">Datos Poblacionales</router-link>
+      <router-link
+        class="btn-options right"
+        :to="{
+          name: 'CreatePopulationData',
+          params: { id: form.document_number },
+        }"
+        >Datos Poblacionales</router-link
+      >
     </div>
 
     <!-- Toast de notificación -->
@@ -288,7 +295,7 @@ export default {
         nutritional_state_income: "",
       },
       nextForm: true,
-      nextComponent: false
+      nextComponent: false,
     };
   },
   methods: {
@@ -298,9 +305,10 @@ export default {
       api.store(e.target).then((data) => {
         if (data.status === 200) {
           console.log("creado");
-            // console.log(data);
-            // $(".toast").toast("show");
-            this.nextCoponent = true;
+          // console.log(data);
+          toastr.success("Se ha creado correctamente");
+
+          this.nextCoponent = true;
         } else {
           console.log("paila mono");
         }
